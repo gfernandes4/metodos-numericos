@@ -1,50 +1,87 @@
+/* styles.css */
+
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
     color: #333;
 }
 
-.method-container {
-    margin: 30px 0;
-}
-
-.run-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-bottom: 10px;
-    cursor: pointer;
+header {
     background-color: #4CAF50;
-    color: white;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideUp 1s ease-out;
+}
+
+section h2 {
+    margin-top: 0;
+    color: #4CAF50;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
 }
 
-.run-button:hover {
-    background-color: #45a049;
+button:hover {
+    background-color: #3b8b3e;
 }
 
-.output {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 5px;
-    overflow-x: auto;
-    height: 200px;
-    white-space: pre-wrap;
+pre {
+    background-color: #f1f1f1;
     border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

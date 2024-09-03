@@ -3,37 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Métodos Numéricos: Secante e Newton-Raphson</title>
+    <title>Resultados dos Métodos Numéricos</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="newton.js"></script>
-    <script defer src="secante.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Métodos Numéricos para Resolver Corrente Oscilante</h1>
-
-        <div class="method-container">
-            <h2>Método da Secante</h2>
-            <button id="runSecante" class="run-button">Executar Método da Secante</button>
-            <pre id="secanteOutput" class="output"></pre> 
-        </div>
-
-        <div class="method-container">
+    <header>
+        <h1>Resultados dos Métodos Numéricos</h1>
+    </header>
+    <main>
+        <section id="newton">
             <h2>Método de Newton-Raphson</h2>
-            <button id="runNewton" class="run-button">Executar Método de Newton-Raphson</button>
-            <pre id="newtonOutput" class="output"></pre>
-        </div>
-    </div>
-
-    <script>
-        // Eventos para os botões
-        document.getElementById('runSecante').addEventListener('click', function() {
-            runSecante();
-        });
-
-        document.getElementById('runNewton').addEventListener('click', function() {
-            runNewton();
-        });
-    </script>
+            <button onclick="runNewton()">Executar Método</button>
+            <pre id="newtonOutput"></pre>
+        </section>
+        <section id="secante">
+            <h2>Método da Secante</h2>
+            <button onclick="runSecante()">Executar Método</button>
+            <pre id="secanteOutput"></pre>
+        </section>
+    </main>
+    <script src="newton.js"></script>
+    <script src="secante.js"></script>
 </body>
 </html>
