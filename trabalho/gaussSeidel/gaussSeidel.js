@@ -23,35 +23,40 @@ function metodoGaussSeidel(matriz, vetor) {
     let xAntigo = Array(n).fill(0); // Cópia do vetor x para comparar as atualizações.
     let iteracao = 0;
     let erro; // Erro relativo
-    let historicoResultados = []; // Armazena o histórico das iterações
+    let historicoResultados = []; // Armazena o histórico das iterações, para mostrar cada iteração
 
-    do { // Para quando o E.R. for menor que a tolerândia ou até que o num max de iterações sera alcançado
+    do { // Para quando o E.R. for menor que a tolerância ou até que o num max de iterações seja alcançado
+        erro = 0; // Reinicia o erro a cada iteração
+        let xNovo = [...x]; // Vetor para armazenar o novo valor de x em cada iteração
+
         for (let i = 0; i < n; i++) {
-            let soma1 = 0;
+
+            let soma1 = 0.0;
             for (let j = 0; j < i; j++) {
-                soma1 += matriz[i][j] * x[j];
+                soma1 += matriz[i][j] * xNovo[j]; // Usa o valor mais recente de xNovo[j]
             }
-            let soma2 = 0;
+
+            let soma2 = 0.0;
             for (let j = i + 1; j < n; j++) {
-                soma2 += matriz[i][j] * xAntigo[j];
+                soma2 += matriz[i][j] * x[j]; // Usa o valor anterior de x[j]
             }
-            x[i] = (vetor[i] - soma1 - soma2) / matriz[i][i];
+
+            xNovo[i] = (vetor[i] - soma1 - soma2) / matriz[i][i]; // Atualiza x[i] usando o valor mais recente
+
+            // Calcula o erro relativo
+            erro = Math.max(erro, Math.abs(xNovo[i] - x[i]) / Math.abs(xNovo[i]));
         }
-        // Calcula o erro relativo
-        erro = 0;
-        for (let i = 0; i < n; i++) {
-            erro = Math.max(erro, Math.abs(x[i] - xAntigo[i]));
-        }
-        xAntigo = [...x]; // Faz uma cópia do vetor x para comparar na próxima iteração
-        iteracao++;
+        x = [...xNovo]; // Atualiza o vetor x para a próxima iteração
         historicoResultados.push([...x]); // Armazena o resultado da iteração atual
+        
+        iteracao++;
     } while (erro > tolerancia && iteracao < maxIteracoes);
 
     return { solucao: x, iteracoes: iteracao, historico: historicoResultados };
 }
 
 function exibirResultados() {
-    let resultado = metodoGaussSeidel(matrizA, vetorB);
+   let resultado = metodoGaussSeidel(matrizA, vetorB);
     let resultadoHtml = '<h2>Resultado Final:</h2><p>';
     for (let i = 0; i < resultado.solucao.length; i++) {
         resultadoHtml += 'x' + (i + 1) + ' = ' + resultado.solucao[i].toFixed(6) + ' ';
